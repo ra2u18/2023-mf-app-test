@@ -19,6 +19,7 @@ module.exports = [
     use: [
       { loader: inDev() ? 'style-loader' : MiniCssExtractPlugin.loader },
       { loader: 'css-loader' },
+      { loader: 'postcss-loader' },
     ],
   },
   {
