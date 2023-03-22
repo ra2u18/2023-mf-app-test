@@ -1,21 +1,22 @@
 const webpack = require('webpack');
-
-const { ModuleFederationPlugin } = webpack.container;
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
-const { inDev } = require('./webpack.helpers');
+const { ModuleFederationPlugin } = webpack.container;
 const deps = require('../../../package.json').dependencies;
+
+const { inDev } = require('./webpack.helpers');
 
 module.exports = [
   inDev() && new webpack.HotModuleReplacementPlugin(),
   inDev() && new ReactRefreshWebpackPlugin(),
   new ModuleFederationPlugin({
-    name: 'container',
-    remotes: {
-      dashboard: 'dashboard@http://localhost:8081/remoteEntry.js',
+    name: 'dashboard',
+    filename: 'remoteEntry.js',
+    exposes: {
+      './DashboardApp': './src/bootstrap',
     },
     shared: {
       ...deps,

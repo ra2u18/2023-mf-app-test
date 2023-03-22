@@ -2,7 +2,7 @@ module.exports = {
   mode: 'development',
   entry: ['./src/main.ts'],
   output: {
-    publicPath: 'http://localhost:8080/',
+    publicPath: 'http://localhost:8081/',
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
   },
@@ -16,7 +16,7 @@ module.exports = {
     alias: require('./helpers/webpack.aliases'),
   },
   devServer: {
-    port: 8080,
+    port: 8081,
     historyApiFallback: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
