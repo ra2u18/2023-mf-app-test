@@ -4,7 +4,7 @@ module.exports = {
   output: {
     publicPath: 'http://localhost:8080/',
     filename: '[name].js',
-    chunkFilename: '[name].chunk.js',
+    chunkFilename: '[name].[chunkhash].js',
   },
   module: {
     rules: require('./helpers/webpack.rules'),
